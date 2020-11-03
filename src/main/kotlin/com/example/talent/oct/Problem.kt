@@ -5,15 +5,15 @@ class Problem {
         val n = coins.size
         if (n < 2) return 0
         if (n < 3) return coins[1]
-        var f0 = 0;
+        var f0 = 0
         var f1 = coins[1]
-        var f2 = Math.max(coins[1], coins[2])
+        var f2 = coins[1].coerceAtLeast(coins[2])
         for (i in 3 until n) {
-            var f3 = Math.max(f0, f1) + coins[i]
+            val f3 = f0.coerceAtLeast(f1) + coins[i]
             f0 = f1
             f1 = f2
             f2 = f3
         }
-        return Math.max(f1, f2)
+        return f1.coerceAtLeast(f2)
     }
 }
